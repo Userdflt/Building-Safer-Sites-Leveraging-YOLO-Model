@@ -58,7 +58,7 @@ Below are a few **sample detection outputs** from the `Tested_Images` folder. Ea
 ### GIF Demo
 Below is a **short demo** showing the object detection & tracking process in action:
 
-![Object Detection Demo GIF](./Tested_Images/construction_workers.gif)
+![Object Detection Demo GIF](Tested_Images/construction_workers.gif)
 *Real-time detection of workers and their PPE in a construction environment.*
 
 ---
