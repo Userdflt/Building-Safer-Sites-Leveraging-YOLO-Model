@@ -31,7 +31,7 @@ Additional Resources:
 
 ---
 
-## Sample Images & Video Placeholder <a id="sample-images--video-placeholder"></a>
+## Sample Test Images
 
 Below are a few **sample detection outputs** from the `Tested_Images` folder. Each output image demonstrates how the model identifies and classifies Personal Protective Equipment (PPE). For the full set, visit the [Tested Images folder](./Tested_Images).
 
@@ -56,7 +56,10 @@ Below are a few **sample detection outputs** from the `Tested_Images` folder. Ea
 <br>
 
 ### GIF Demo
-[Placeholder for real-time object tracking or webcam inference video.](./Tested_Images/construction_workersg-ezgif.com-optimize_(3).gif)
+Below is a **short demo** showing the object detection & tracking process in action:
+
+![Object Detection Demo GIF](./Tested_Images/construction_workersg-ezgif.co.gif)
+*Real-time detection of workers and their PPE in a construction environment.*
 
 ---
 
