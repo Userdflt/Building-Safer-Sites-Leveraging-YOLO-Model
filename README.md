@@ -1,140 +1,150 @@
 # Building Safer Sites: Object Detection for Safety Compliance on Construction Sites
 
 **By: Young Woo Song**  
-**Refer to References below for Notebooks**
+*(See [References](#references) below for notebooks and further details.)*
 
-## [Click for Presentation](https://docs.google.com/presentation/d/1dqKrkC93hJaZuHbiYrfXxdaZGDl-4SeXTTZ4rKVp44w/pub?start=false&loop=false&delayms=3000)
-## [Click for Full Report](https://docs.google.com/document/d/e/2PACX-1vTrURLXikE6d2WMttfvWha5lRz4AbbcjGErVmp2-7c2o6KevnptmiShxyBagpeYQg/pub)
-
-### [Click for Tested Images](./Tested_Images)
-### [Click for Tested Videos (object tracking and webcam inference (latency due to running on cpu)](./Tested_Video)
-### [Click for YOLO Model with Normalisation Performance results](./YOLO_70_epochs_w_normalisation_Results)
-### [Click for YOLO Model with Oversampling Performance results](./YOLO_50_epochs_w_Oversampling_Results)
----
-
-## Problem Statement
-
-Currently in New Zealand, much of the construction site safety is often monitored manually, which is time-consuming, prone to human error, and not always effective. This can lead to a higher risk of accidents and potential legal liabilities.
-
-**Value Proposition:**
-- Ensuring safety compliance can significantly reduce the number of accidents and injuries at construction sites, saving lives, reducing medical costs, and improving productivity.
-
-The project investigates the idea of object detection of safety compliance items (PPE gear) at construction sites using labeled image data. The goal is to effectively identify whether workers are wearing proper safety (PPE) gear when working on construction sites.
+## Table of Contents
+1. [Overview](#overview)
+2. [Sample Images & Video Placeholder](#sample-images--video-placeholder)
+3. [Problem Statement](#problem-statement)
+4. [Industry/Domain](#industrydomain)
+5. [Stakeholders](#stakeholders)
+6. [Business and Data Questions](#business-and-data-questions)
+7. [Data Description](#data-description)
+8. [Data Science Process](#data-science-process)
+9. [Modeling and Evaluation](#modeling-and-evaluation)
+10. [Implementation and Results](#implementation-and-results)
+11. [Business and Data Answers](#business-and-data-answers)
+12. [References](#references)
 
 ---
 
-## Industry/Domain
+## Overview <a id="overview"></a>
+- **Presentation:** [Click here](https://docs.google.com/presentation/d/1dqKrkC93hJaZuHbiYrfXxdaZGDl-4SeXTTZ4rKVp44w/pub?start=false&loop=false&delayms=3000)
+- **Full Report:** [Click here](https://docs.google.com/document/d/e/2PACX-1vTrURLXikE6d2WMttfvWha5lRz4AbbcjGErVmp2-7c2o6KevnptmiShxyBagpeYQg/pub)
 
-**Focus:**
-- Construction industry, specifically site safety.
-
-**Context:**
-- The construction industry is known for its high-risk nature, presenting challenges in ensuring and maintaining the safety of workers.
-- Various IoT and AI-based solutions are designed to enhance safety monitoring, though industry-wide adoption is still in progress.
-
-**Application:**
-- This project’s application extends beyond the construction industry and is also relevant to other sectors where safety compliance is critical, such as manufacturing, mining, and oil and gas.
+Additional Resources:
+- [Tested Images](./Tested_Images)
+- [Tested Videos (Object Tracking / Webcam Inference)](./Tested_Video)
+- [YOLO Model with Normalization Performance](./YOLO_70_epochs_w_normalisation_Results)
+- [YOLO Model with Oversampling Performance](./YOLO_50_epochs_w_Oversampling_Results)
 
 ---
 
-## Stakeholders
+## Sample Images & Video Placeholder <a id="sample-images--video-placeholder"></a>
 
-**Key Stakeholders:**
-- Construction company executives
-- Regulatory bodies
-- Site managers
-- Safety officers
+Below are a few **sample detection outputs** from the `Tested_Images` folder. Each output image demonstrates how the model identifies and classifies Personal Protective Equipment (PPE). For the full set, visit the [Tested Images folder](./Tested_Images).
 
-**Goal:**
-- To reduce the risk of accidents, legal liabilities, and associated costs.
+<br>
 
----
+**1. Output (output.png)**  
+![Output Image 1](./Tested_Images/output.png)  
+*Model detecting workers and PPE (helmets, vests, etc.).*
 
-## Business and Data Questions
+<br>
 
-**Business Question:**
-- How can we efficiently detect safety compliance at construction sites using object detection & tracking methods?
+**2. Output (output2.png)**  
+![Output Image 2](./Tested_Images/output2.png)  
+*Another detection result with bounding boxes around identified PPE.*
 
-**Data Question:**
-- What data features are required to develop a model that can accurately detect safety compliance on construction sites?
+<br>
 
----
+**3. Output (output3.png)**  
+![Output Image 3](./Tested_Images/output3.png)  
+*Model inference showing multiple workers; color-coded bounding boxes for each class.*
 
-## Data Description
+<br>
 
-**Source:**  
-- Kaggle dataset: ["Construction Site Safety Image Dataset"](https://www.kaggle.com/datasets/snehilsanyal/construction-site-safety-image-dataset-roboflow/data)
-
-**Details:**
-- The dataset includes images annotated with labels for safety gear (PPE).
-- Generated by collecting images from various construction sites and annotating them with labels and bounding boxes.
-- Similar data can be continuously collected for ongoing model improvement.
+### GIF Demo
+[Placeholder for real-time object tracking or webcam inference video.](./Tested_Images/construction_workersg-ezgif.com-optimize_(3).gif)
 
 ---
 
-## Data Science Process
+## Problem Statement <a id="problem-statement"></a>
+Currently in New Zealand, construction site safety is often monitored manually, which can be **time-consuming** and **error-prone**, leading to **increased risk of accidents** and potential **legal liabilities**.
 
-**Data Analysis:**
-- **Initial Checking of Data:**
-  - Consistency in image sizes (640x640) and properties was confirmed.
-  - Initial image quality check showed diversity, clarity, and consistency, with no major anomalies detected.
-  - Label distribution revealed imbalances, particularly with the "Person" class being dominant.
+**Value Proposition**:
+- Automating safety compliance checks can reduce accidents, injuries, and associated costs by ensuring workers wear proper PPE on-site.
 
----
-
-## Modeling and Evaluation
-
-**Model Choice:**
-- YOLOv9 was chosen for its efficient object detection capabilities.
-
-**Improvement Stages:**
-- Basic YOLO model
-- Fine-tuned YOLO model with normalization
-- Fine-tuned YOLO model with oversampling and normalization
-
-**Evaluation:**
-- The fine-tuned YOLO model with normalization showed the best overall performance, balancing precision and recall across various classes.
+This project aims to **detect safety compliance** items (like PPE gear) via object detection, using labeled image data to identify whether workers are wearing proper safety equipment.
 
 ---
 
-## Implementation and Results
-
-**Implementation Considerations:**
-- Performance optimization for object tracking
-- Model accuracy improvement through further data collection
-- Deployment environment and maintenance requirements
-- Cost considerations
-
-**Outcomes:**
-- The YOLO model successfully detected safety compliance on construction sites, with high precision in key safety classes.
+## Industry/Domain <a id="industrydomain"></a>
+- **Focus**: Construction industry, specifically site safety.
+- **Context**: High-risk environment, where monitoring worker compliance is crucial.
+- **Application**: Relevant to any industry requiring PPE (e.g., manufacturing, mining, oil & gas).
 
 ---
 
-## Business and Data Answers
-
-**Data Answer:**
-- The project successfully utilized labeled images showing construction workers with and without PPE, crucial in training the model for accurate safety compliance detection.
-
-**Business Answer:**
-- The customized model effectively detects safety compliance, indicating potential for reducing accidents and associated costs in the construction industry.
-
-**Stakeholder Response:**
-- The project addresses the need for safety compliance monitoring. A test implementation in real-life scenarios is recommended for further improvements.
+## Stakeholders <a id="stakeholders"></a>
+- **Key Stakeholders**: Construction company executives, regulatory bodies, site managers, safety officers  
+- **Goal**: Mitigate accidents, legal liabilities, and cost through proactive monitoring.
 
 ---
 
-## References
+## Business and Data Questions <a id="business-and-data-questions"></a>
+- **Business Question**: How can we efficiently detect safety compliance at construction sites using object detection and tracking?
+- **Data Question**: What data features are required for an accurate model that identifies safety gear on construction sites?
 
-- **Notebooks (Code):**
-  - Dataset Inspection: [CSS_Image_detection_Inspection.ipynb](./CSS_Image_detection_Inspection.ipynb)
-  - YOLO model with Oversampling and Normalisation (50 Epochs): [Final_YOLO_Model_50_epochs_ovs_norm.ipynb](./Final_YOLO_Model_50_epochs_ovs_norm.ipynb)
-  - YOLO model with Oversampling and Normalisation (70 Epochs): [Final_YOLO_Model_70_epochs_norm.ipynb](./Final_YOLO_Model_70_epochs_norm.ipynb)
-  - Webcam Inference Deployment: [Webcam Inference.py](./Webcam_Inference.py)
+---
 
-- **Image Sources and Information:**
-  - [Digital Transformation in Construction Industry](https://www.slideshare.net/slideshow/digital-transformation-in-the-construction-industry/98665953)
-  - [WorkSafe NZ Injury Data](https://data.worksafe.govt.nz/graph/detail/injuries_week_away?startDate=2022-01&endDate=2023-05&industry=Construction)
-  - [Vital PPE Gear for Construction](https://safetysupplies.co.nz/blogs/news/vital-ppe-gear-for-ensuring-safety-in-construction)
-  - [Serious Harm Injuries Data](https://data.worksafe.govt.nz/graph/summary/injuries_serious_harm)
-  - [PPE Practical Safety Advice](https://www.sitesafe.org.nz/globalassets/guides-and-resources/practical-safety-advice/ppe_2019-web.pdf)
-  - [Construction Site Safety Dataset](https://www.kaggle.com/datasets/snehilsanyal/construction-site-safety-image-dataset-roboflow/data)
+## Data Description <a id="data-description"></a>
+- **Source**: [Kaggle Construction Site Safety Image Dataset](https://www.kaggle.com/datasets/snehilsanyal/construction-site-safety-image-dataset-roboflow/data)
+- **Details**:
+  - Images labeled for various PPE (helmets, vests, etc.).
+  - Diverse set of construction scenarios with bounding-box annotations.
+  - Ongoing data collection can further improve the model.
+
+---
+
+## Data Science Process <a id="data-science-process"></a>
+- **Data Analysis**:
+  - Checked image sizes (640x640) for consistency.
+  - Label distribution showed imbalance (the “Person” class being most frequent).
+
+---
+
+## Modeling and Evaluation <a id="modeling-and-evaluation"></a>
+- **Model Choice**: YOLOv9 for efficient object detection.
+- **Improvement Stages**:
+  1. Baseline YOLO Model  
+  2. YOLO with Normalization  
+  3. YOLO with Oversampling and Normalization
+- **Evaluation**:
+  - The YOLO model with normalization gave the best balance of **precision** and **recall**.
+
+---
+
+## Implementation and Results <a id="implementation-and-results"></a>
+- **Implementation Considerations**:
+  - Real-time object tracking performance.
+  - Data collection strategies for continuous model improvement.
+  - Deployment environment and associated costs.
+- **Outcomes**:
+  - Demonstrated strong detection of safety gear with YOLO.
+  - High precision in identifying key PPE classes (helmets, vests, etc.).
+
+---
+
+## Business and Data Answers <a id="business-and-data-answers"></a>
+- **Data Answer**: The labeled images effectively trained an accurate detection model.  
+- **Business Answer**: A robust, real-time compliance check can reduce accidents, costs, and liabilities in the construction sector.  
+- **Next Steps**: Real-world pilot testing, continued data collection, and further model refinement.
+
+---
+
+## References <a id="references"></a>
+1. **Notebooks (Code)**
+   - [CSS_Image_detection_Inspection.ipynb](./CSS_Image_detection_Inspection.ipynb) – Dataset inspection and analysis  
+   - [Final_YOLO_Model_50_epochs_ovs_norm.ipynb](./Final_YOLO_Model_50_epochs_ovs_norm.ipynb) – YOLO with Oversampling & Normalization (50 epochs)  
+   - [Final_YOLO_Model_70_epochs_norm.ipynb](./Final_YOLO_Model_70_epochs_norm.ipynb) – YOLO with Oversampling & Normalization (70 epochs)  
+   - [Webcam_Inference.py](./Webcam_Inference.py) – Deployment code for local webcam inference
+
+2. **Image Sources and Additional Info**  
+   - [Digital Transformation in Construction Industry](https://www.slideshare.net/slideshow/digital-transformation-in-the-construction-industry/98665953)  
+   - [WorkSafe NZ Injury Data](https://data.worksafe.govt.nz/graph/detail/injuries_week_away?startDate=2022-01&endDate=2023-05&industry=Construction)  
+   - [Vital PPE Gear for Construction](https://safetysupplies.co.nz/blogs/news/vital-ppe-gear-for-ensuring-safety-in-construction)  
+   - [Serious Harm Injuries Data](https://data.worksafe.govt.nz/graph/summary/injuries_serious_harm)  
+   - [PPE Practical Safety Advice](https://www.sitesafe.org.nz/globalassets/guides-and-resources/practical-safety-advice/ppe_2019-web.pdf)
+   - [Construction Site Safety Dataset](https://www.kaggle.com/datasets/snehilsanyal/construction-site-safety-image-dataset-roboflow/data)
