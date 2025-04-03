@@ -38,19 +38,19 @@ Below are a few **sample detection outputs** from the `Tested_Images` folder. Ea
 <br>
 
 **1. Output (output.png)**  
-![Output Image 1](./Tested_Images/output.png)  
+![Output Image 1](./Tested_Images/output4.png)  
 *Model detecting workers and PPE (helmets, vests, etc.).*
 
 <br>
 
 **2. Output (output2.png)**  
-![Output Image 2](./Tested_Images/output2.png)  
+![Output Image 2](./Tested_Images/output5.png)  
 *Another detection result with bounding boxes around identified PPE.*
 
 <br>
 
 **3. Output (output3.png)**  
-![Output Image 3](./Tested_Images/output3.png)  
+![Output Image 3](./Tested_Images/output6.png)  
 *Model inference showing multiple workers; color-coded bounding boxes for each class.*
 
 <br>
